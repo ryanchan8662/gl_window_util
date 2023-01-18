@@ -28,14 +28,21 @@
 
 enum ObjectTypes { POINT, LINE, TRI_MESH, POLY_MESH };
 
-struct Object {
-    std::string object_name;
-    glm::mat4x4 object_transforms;
-    glm::vec3 object_colour;
-    ObjectTypes object_type;
+class Object {
+
+private:
+    std::string name;
+    glm::mat4x4 transforms;
+    glm::vec3 colour;
+    ObjectTypes type;
+
+public:
+
+    std::string object_name();
+    const glm::mat4x4* object_transforms();
+    const glm::vec3* object_colour();
+    int object_type();
+
 };
-
-
-
 
 #endif //GL_WINDOW_UTIL_OBJECT_H

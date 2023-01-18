@@ -54,6 +54,8 @@ public:
     int window_init (int x, int y, const char* title);
     void add_object (Object* new_obj);
     void import_object (const std::string* file_name);
+    void draw ();
+
 };
 
 
