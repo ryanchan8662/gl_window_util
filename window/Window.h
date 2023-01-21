@@ -19,6 +19,7 @@
 #ifndef GL_WINDOW_UTIL_WINDOW_H
 #define GL_WINDOW_UTIL_WINDOW_H
 
+#define SCROLL_SENSITIVITY_SCALING_FACTOR 1.0f
 
 class Window {
 
@@ -26,13 +27,14 @@ private:
     GLFWwindow* window;
     int x, y;
     const char* title;
+    glm::vec2 orbit_state{};
+
+    void orbit_conversion(const InputStates* data);
 
 public:
     Window(int x, int y, const char* title);
     ~Window();
     int window_init();
-
-    void process_input();
 
 };
 
