@@ -6,11 +6,23 @@
 
 TransformBus* TransformBus::self = nullptr;
 
+TransformBus::TransformBus() {
+
+    targets = std::vector<DataTarget*>();
+
+}
+
 const TransformBus* TransformBus::instance() {
 
     if (self == nullptr)
         self = new TransformBus();
 
     return (self);
+
+}
+
+void TransformBus::register_target(DataTarget* victim) {
+
+
 
 }
