@@ -2,39 +2,19 @@
 // Created by Ryan on 2023-01-16.
 //
 
-#ifndef GLFW
-#define GLFW
+#ifndef IMPORTS
+#define IMPORTS
 
-#include <GLFW/glfw3.h>
+#include "../imports.h"
 
-#endif /* GLFW */
+#endif /* IMPORTS */
 
-#ifndef STRING
-#define STRING
+#ifndef EVENTHANDLER
+#define EVENTHANDLER
 
-#include <string>
+#include "Event_handler.h"
 
-#endif /* STRING */
-
-#ifndef VECTOR
-#define VECTOR
-
-#include <vector>
-
-#endif /* VECTOR */
-
-#ifndef IO
-#define IO
-#include <iostream>
-#include <cstdio>
-#endif
-
-#ifndef OBJECT
-#define OBJECT
-
-#include "Object/Object.h"
-
-#endif /* OBJECT */
+#endif /* EVENTHANDLER */
 
 #ifndef GL_WINDOW_UTIL_WINDOW_H
 #define GL_WINDOW_UTIL_WINDOW_H
@@ -44,17 +24,15 @@ class Window {
 
 private:
     GLFWwindow* window;
-    std::vector<Object*> object_list;
+    int x, y;
+    const char* title;
 
 public:
-    Window();
-    Window(const Window &in);
+    Window(int x, int y, const char* title);
     ~Window();
+    int window_init();
 
-    int window_init (int x, int y, const char* title);
-    void add_object (Object* new_obj);
-    void import_object (const std::string* file_name);
-    void draw ();
+    void process_input();
 
 };
 

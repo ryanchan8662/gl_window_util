@@ -8,7 +8,7 @@
 
 int main() {
     std::cout << "Harness started" << std::endl;
-    Window* penis = new Window();
-    penis->window_init(1280, 720, "penis");
+    auto* penis = new Window(780, 640, "test window");
+    penis->window_init();
     exit (EXIT_SUCCESS);
 }

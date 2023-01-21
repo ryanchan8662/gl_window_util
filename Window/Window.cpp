@@ -5,17 +5,18 @@
 #include "Window.h"
 
 
-Window::Window() {
+Window::Window(int x, int y, const char* title) : x(x), y(y), title(title) {
     window = nullptr;
-    object_list = std::vector<Object*>();
 }
-Window::Window (const Window &in) {
-    window = nullptr;
-    object_list = std::vector<Object*>();
-}
+
 Window::~Window() = default;
 
-int Window::window_init(int x, int y, const char* title) {
+int Window::window_init() {
+
+    if (window) {
+        std::cerr << "Window context already created." << std::endl;
+        return (1);
+    }
 
     if (!glfwInit()) {
         std::cerr << "GLFW could not be initialised." << std::endl;
@@ -31,11 +32,21 @@ int Window::window_init(int x, int y, const char* title) {
 
     glfwMakeContextCurrent(window);
 
+
+    auto input_handler = Event_handler();
+    glfwSetCursorPosCallback(window, Event_handler::cursor_callback);
+    glfwSetScrollCallback(window, Event_handler::scroll_callback);
+    glfwSetKeyCallback(window, Event_handler::keyboard_callback);
+
+
     while (!glfwWindowShouldClose(window)) {
 
-        glfwPollEvents();
+        glfwWaitEvents();
+        std::cout << "Event triggered" << std::endl;
 
-        draw();
+        // process user input for current event
+        const InputStates* data = input_handler.input_data();
+        // draw();
 
     }
 
@@ -43,106 +54,8 @@ int Window::window_init(int x, int y, const char* title) {
     return (0);
 }
 
-void Window::add_object (struct Object* new_obj) {
+void Window::process_input() {
 
-    object_list.push_back(new_obj);
-    std::cerr << "Added ";
 
-    switch (new_obj->object_type()) {
-
-        case (POINT):
-            std::cout << "Point added" << std::endl;
-            break;
-
-        case(LINE):
-            std::cout << "Line added" << std::endl;
-            break;
-
-        case(TRI_MESH):
-            std::cout << "Triangle mesh added" << std::endl;
-            break;
-
-        case(POLY_MESH):
-            std::cout << "Poly mesh added" << std::endl;
-            break;
-
-        default:
-            std::cerr << "You're weird. Why'd you want to render an undefined shape?" << std::endl;
-            break;
-    }
 
 }
-
-void Window::import_object (const std::string* file_name) {
-
-    std::cout << "Importing object " << file_name->c_str() << std::endl;
-
-}
-
-void Window::draw () {
-
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    glBegin(GL_TRIANGLES);
-
-    glColor3f(1.0f, 1.0f, 1.0f);
-
-    glVertex3f(0.0f, 0.5f, 1.0f);
-    glVertex3f(0.5f, -0.25f, 0.0f);
-    glVertex3f(-0.5f, -0.25f, -1.0f);
-    glEnd();
-
-    glfwSwapBuffers(window);
-
-}
-
-/**
-int main(void)
-{
-    GLFWwindow* window;
-
-    /* Initialize the library *
-    if (!glfwInit())
-        return -1;
-
-    /* Create a windowed mode window and its OpenGL context *
-    window = glfwCreateWindow(1280, 1000, "Hello World", nullptr, nullptr);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    /* Make the window's context current *
-    glfwMakeContextCurrent(window);
-
-
-    /* Loop until the user closes the window *
-    while (!glfwWindowShouldClose(window))
-    {
-        /* Poll for and process events *
-        glfwPollEvents();
-
-        /* Render here *
-
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        //...
-
-        glBegin(GL_TRIANGLES);
-
-        glVertex2f(0.0f, 0.5f);
-        glVertex2f(0.5f, -0.25f);
-        glVertex2f(-0.5f, -0.25f);
-
-        glEnd();
-
-        /* Swap front and back buffers *
-        glfwSwapBuffers(window);
-
-    }
-
-    glfwTerminate();
-    return 0;
-}
-**/
