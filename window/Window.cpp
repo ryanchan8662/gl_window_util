@@ -13,8 +13,8 @@ void Window::orbit_conversion (const InputStates* data) {
         GLuint* selection; int selection_size; // cursor selection vector
 
         long m_down; long k_down; // keydowns
-     };
-     */
+    };
+    */
 
     orbit_state[0] += data->scroll_xy[0] * SCROLL_SENSITIVITY_SCALING_FACTOR;
     orbit_state[1] += data->scroll_xy[1] * SCROLL_SENSITIVITY_SCALING_FACTOR;
@@ -46,6 +46,7 @@ int Window::window_init() {
         std::cerr << "GLFW could not be initialised." << std::endl;
         return (1);
     }
+
     window = glfwCreateWindow(x, y, title, nullptr, nullptr);
 
     if (!window) {
