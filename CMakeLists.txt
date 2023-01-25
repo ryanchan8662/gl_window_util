@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.23)
 project(gl_window_util)
 
-include_directories(/opt/homebrew/Cellar)
+if (APPLE)
+    include_directories(/opt/homebrew/Cellar)
+endif()
 
 find_package(glfw3 3.3 REQUIRED)
 find_package(glm REQUIRED)
+find_package(OpenGL REQUIRED)
 
 set(CMAKE_CXX_STANDARD 14)
 
