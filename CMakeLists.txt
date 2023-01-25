@@ -15,7 +15,10 @@ add_executable(${PROJECT_NAME} harness.cpp window/Window.cpp window/Window.h
 
         window/Event_handler.cpp window/Event_handler.h
 
-        bus/transform_data/transform_data_bus.cpp bus/transform_data/transform_data_bus.h bus/transform_data/data_targets.h bus/transform_data/target.h render/renderer.h)
+        bus/transform_data/transform_data_bus.cpp bus/transform_data/transform_data_bus.h
+        bus/transform_data/data_targets.h bus/transform_data/target.h
+        render/renderer.h
+        render/vbos/prototype.cpp render/vbos/prototype.h render/vbos/reference.cpp render/vbos/reference.h)
 
 target_link_libraries(${PROJECT_NAME} glfw)
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})

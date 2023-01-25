@@ -47,6 +47,7 @@ int Window::window_init() {
         return (1);
     }
 
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
     window = glfwCreateWindow(x, y, title, nullptr, nullptr);
 
     if (!window) {

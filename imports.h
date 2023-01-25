@@ -36,4 +36,9 @@
 #include <stdint.h>
 #endif /* STDINT */
 
+#ifndef STACK
+#define STACK
+#include <stack>
+#endif /* STACK */
+
 #endif //GL_WINDOW_UTIL_IMPORTS_H
