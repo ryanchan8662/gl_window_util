@@ -38,6 +38,9 @@ public:
     static void cursor_callback(GLFWwindow* window, double x, double y);
     static void scroll_callback(GLFWwindow* window, double x, double y);
     static void keyboard_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+    static void reset_cursor_state();
+
 };
 
 

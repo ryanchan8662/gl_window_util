@@ -26,6 +26,8 @@ void Window::orbit_conversion (const InputStates* data) {
     glRotatef(orbit_state[1], 1.0f, 0.0f, 0.0f);
     glRotatef(orbit_state[0], 0.0f, 1.0f, .0f);
 
+    Event_handler::reset_cursor_state();
+
 
 }
 

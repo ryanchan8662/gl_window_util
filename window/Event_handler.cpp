@@ -18,6 +18,12 @@ const InputStates* Event_handler::input_data () {
 
 }
 
+void Event_handler::reset_cursor_state() {
+
+    staticref_input->scroll_xy = glm::vec2(0.0f, 0.0f);
+
+}
+
 void Event_handler::cursor_callback(GLFWwindow* window, double x, double y) {
     //std::cout << "c_callback" << std::endl;
     staticref_input->mouse_xy = glm::vec2(x, y);
