@@ -6,7 +6,7 @@
 #define GL_WINDOW_UTIL_REFERENCE_H
 
 
-class reference {
+class Reference {
 
 };
 

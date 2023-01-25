@@ -12,14 +12,18 @@
 #ifndef GL_WINDOW_UTIL_PROTOTYPE_H
 #define GL_WINDOW_UTIL_PROTOTYPE_H
 
+#include "reference.h"
+
 
 class Prototype {
 
 private:
-    std::vector<glm::vec3> vertices;
+    std::vector<glm::vec3>* vertices;
     glm::mat4x4 initial_transform;
 
 public:
+    Prototype(glm::vec3* pts, long n_pts);
+    const Reference* instantiate();
 
 };
 
